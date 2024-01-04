@@ -49,6 +49,7 @@ async function getProductDataThenDisplay(categories) {
                         `;
 
             products.forEach((product) => {
+                console.log('product', product);
                 content += `<div class="col-6 col-sm-6 col-md-4 col-lg-3 mt-2" alt="sku001">
 				    <div id="${product.id}" class="product-card card">
 					    <div class="card-body">
