@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     fillCart();
+    handleChangeQty();
+    handleDeleteItem();
 });
 
 function fillCart() {
@@ -34,10 +36,10 @@ function fillCart() {
 						<h7 class="cart-title">${product.productName}</h7>						
 						<small>${convertCurrency(product.price)}</small>
 						<br>
-						<a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+						<a class="knu-delete-item" knt-delete-item-id="${product.productId}" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
 					</div>
 				</td>
-				<td><input type="number" value="${product.quantity}"></td>
+				<td><input type="number" knt-cart-item-id="${product.productId}" value="${product.quantity}"></td>
 				<td>${convertCurrency(product.totalPrice)}</td>
 			</tr>
         `
@@ -54,7 +56,57 @@ function fillCart() {
 
 }
 
+function handleChangeQty() {
+    const quantityInput = document.querySelectorAll("input[type=number]");
+    if(quantityInput && quantityInput.length) {
+        const cartData = JSON.parse(localStorage.getItem('cart-info'));
+        quantityInput.forEach((input) => {
+            input.addEventListener('change', () => {
+                const productId = Number.parseInt(input.getAttribute('knt-cart-item-id'));
+                const quantity = Number.parseInt(input.value)
+                updateCartData(productId, cartData, quantity);
+                fillCart();
+                handleChangeQty();
+            });
+        });
+    }
+}
+
+function handleDeleteItem() {
+    const deleteCartItemBtn = document.querySelectorAll(".knu-delete-item");
+    if (deleteCartItemBtn && deleteCartItemBtn.length) {
+        const cartData = JSON.parse(localStorage.getItem('cart-info'));
+        deleteCartItemBtn.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const productId = Number.parseInt(input.getAttribute('knt-delete-item-id'));
+                deleteCartItem(cartData, productId);
+                fillCart();
+                handleDeleteItem();
+            });
+        });
+    }
+}
 function convertCurrency(price) {
     const result = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
     return result;
+}
+
+function updateCartData(productId, cartData, quantity) {
+    const findItem =  cartData.findIndex(function (product) {
+        return product.productId === productId;
+    });
+    if(quantity > 0) {
+        cartData[findItem].quantity = quantity;
+        cartData[findItem].totalPrice = cartData[findItem].price * quantity;
+        localStorage.setItem("cart-info", JSON.stringify(cartData));
+    } else {
+        deleteCartItem(cartData, productId);
+    }
+}
+
+function deleteCartItem(cartData, productId) {
+    const newCartData = cartData.filter(function (cartItem) {
+        return cartItem.productId !== productId;
+    });
+    localStorage.setItem("cart-info", JSON.stringify(newCartData));
 }
