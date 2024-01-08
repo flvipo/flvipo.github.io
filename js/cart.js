@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function fillCart() {
     const getCartInfo = localStorage.getItem('cart-info');
-    if(!getCartInfo || getCartInfo == '') {
+    if(!getCartInfo || getCartInfo == '' || !getCartInfo.length) {
         console.log('Cart empty');
         alert('Cart empty');
     } else {
@@ -67,6 +67,7 @@ function handleChangeQty() {
                 updateCartData(productId, cartData, quantity);
                 fillCart();
                 handleChangeQty();
+                handleDeleteItem();
             });
         });
     }
@@ -78,10 +79,11 @@ function handleDeleteItem() {
         const cartData = JSON.parse(localStorage.getItem('cart-info'));
         deleteCartItemBtn.forEach((btn) => {
             btn.addEventListener('click', () => {
-                const productId = Number.parseInt(input.getAttribute('knt-delete-item-id'));
+                const productId = Number.parseInt(btn.getAttribute('knt-delete-item-id'));
                 deleteCartItem(cartData, productId);
                 fillCart();
                 handleDeleteItem();
+                handleChangeQty();
             });
         });
     }

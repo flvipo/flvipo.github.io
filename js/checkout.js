@@ -45,11 +45,15 @@ async function checkout() {
     const totalAmount = cartData.reduce(function (accumulator, product) {
         return accumulator + product.totalPrice;
     }, 0);
+    console.log('totalAmount', totalAmount)
     const getAddress = address +
             ", " + $("#ward option:selected").text() + ", " + 
             $("#district option:selected").text() + ", " +
             $("#city option:selected").text();
     const shippingFee = Number.parseInt(SHIPPING_FEE[$("#district option:selected").text()]);
+    console.log('$("#district option:selected").text()'), $("#district option:selected").text()
+    console.log('SHIPPING_FEE[$("#district option:selected").text()]', SHIPPING_FEE[$("#district option:selected").text()])
+    console.log('shippingFee', typeof shippingFee, shippingFee)
     const currentDate = new Date();
     const data = {
         name: name,
@@ -73,6 +77,7 @@ async function checkout() {
 
     const createOrderRes = await createOrderReq.json();
 
+    console.log('createOrderRes.id', createOrderRes);
     const dataOrderDetail = {
         orderId: createOrderRes.id,
         cartData: cartData
