@@ -2,6 +2,7 @@
     margin-top: 50px;
 }
 
+
 .mb-50{
     margin-bottom: 50px;
 }
@@ -87,6 +88,11 @@ a{
 }
 .title-spp a:active{
 	color: #ff7634;
+}
+
+
+.nav-link .active{
+	background-color: #fff;
 }
 .flex-container{
 	display: flex;

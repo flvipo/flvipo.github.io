@@ -73,6 +73,7 @@ Author: @_vipooo_ /frontend/
 	color: #000;
 	
 }
+
 @media (min-width: 991px) {
 	.nav-link::before{
 		content: "";
