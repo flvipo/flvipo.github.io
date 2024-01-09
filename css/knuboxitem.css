@@ -1,0 +1,110 @@
+.mt-50{
+    margin-top: 50px;
+}
+
+
+.mb-50{
+    margin-bottom: 50px;
+}
+
+.text-soluong{
+	font-size: 12px;
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction column-fill: ;
+    flex-direction: column;
+    background-clip: border-box;
+    border: 10px medium rgba(0,0,0,0.125);
+    border-radius: 0.1875rem;
+}
+
+.card-img-actions {
+    position: relative;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0.05rem;
+    text-align: left;
+}
+
+.card-img{
+    width: 350px;
+}
+
+.star{
+	color: #FFC600;
+}
+.fa-cart-plus{
+	color: #ff7634;
+}
+
+
+.subprice{
+	text-decoration: line-through;
+	color: #d9d9d9;
+	font-size: 14px;
+}
+.mainprice{
+	color: #ff7634;
+	font-weight: 650;
+	font-size: 19px;
+	margin: -5px 0;
+}
+
+.bg-cart:hover {
+    
+    color:#fff;
+}
+
+.bg-buy {
+    background-color:green;
+    color:#fff;
+    padding-right: 29px;
+}
+.bg-buy:hover {    
+	color:#000;
+}
+a{
+	font-weight: 600;	
+}
+.title-spp{
+	font-size: 14px;
+}
+
+.title-spp a:link{
+	color:#000000;
+    text-decoration: none !important;
+}
+.title-spp a:visited{
+	color: #000000
+}
+.title-spp a:hover{
+	color: #9E461B;
+}
+.title-spp a:active{
+	color: #ff7634;
+}
+
+
+.nav-link .active{
+	background-color: #fff;
+}
+.flex-container{
+	display: flex;
+	justify-content: space-between;
+}
+.card-subtitle{
+	font-size: 11px; 
+	color: #121212;
+}
+
+
+
+
+
+
